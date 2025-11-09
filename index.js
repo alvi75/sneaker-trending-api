@@ -25,13 +25,14 @@ app.get('/trending', async (req, res) => {
   try {
     console.log('🚀 Ultra-minimal search starting...');
     
-    // ONLY 2 PATTERNS - Top performers only
+    // 3 TOP COLLABORATION PATTERNS
     const PATTERNS = [
         { keyword: "Travis Scott", priority: 1 },
-        { keyword: "Off-White", priority: 2 }
+        { keyword: "Off-White", priority: 2 },
+        { keyword: "Fragment", priority: 3 }
     ];
 
-    const PRODUCTS_PER_PATTERN = 5;  // MINIMUM
+    const PRODUCTS_PER_PATTERN = 8;  // Increased from 5
     
     let allProducts = [];
 
@@ -106,11 +107,11 @@ app.get('/trending', async (req, res) => {
     // Sort by price increase
     unique.sort((a, b) => b.priceIncrease - a.priceIncrease);
 
-    // Top 5
-    const top5 = unique.slice(0, 5);
+    // Top 8 results
+    const top8 = unique.slice(0, 8);
 
-    console.log(`Returning ${top5.length} items`);
-    res.json(top5);
+    console.log(`Returning ${top8.length} items`);
+    res.json(top8);
 
   } catch (error) {
     console.error('Error:', error);
